@@ -1,0 +1,137 @@
+@import '_variables'
+
+/*  global
+---------------------------------------------------------------------------- */
+
+html
+  font-size: 16px
+  font-weight: 400
+  line-height: 1.5
+  color: #1f1f1f
+  background: #fff
+  overflow-x: hidden
+
+body
+  font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif
+  -webkit-text-size-adjust: 100%
+  width: 100%
+  margin: 0
+  overflow-x: hidden
+
+h1,h2,h3,h4,h5,h6,p,ul
+  margin: 0
+  padding: 0
+
+a
+  text-decoration: none
+
+a:hover
+  text-decoration: blink
+
+ul
+  list-style: none
+
+img
+  vertical-align: bottom
+  max-width: 100%
+  box-sizing: content-box
+
+*, :after, :before
+  box-sizing: border-box
+
+strong
+  font-size: 1.1em
+  font-weight: 600
+
+em
+  font-size: 1.1em
+  font-weight: 600
+  font-style: inherit
+
+
+/*  grid
+---------------------------------------------------------------------------- */
+
+.container
+  margin-left: auto
+  margin-right: auto
+  width: calc(100% - 1.4rem)
+
+  @media (max-width $screen-xs)
+    width: calc(100% - 1.4rem)
+  @media (min-width $screen-m)
+    width: 85%
+  @media (min-width $screen-l)
+    width: 85%
+  @media (min-width $screen-xl)
+    max-width: $screen-xl
+
+.row
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-start
+  align-items: flex-start
+  margin-top: -($gutter-width / 2)
+  margin-bottom: -($gutter-width / 2)
+  margin-left: -($gutter-width / 2)
+  margin-right: -($gutter-width / 2)
+  @media (max-width $screen-m)
+    margin-top: -($gutter-width / 4)
+    margin-bottom: -($gutter-width / 4)
+    margin-left: -($gutter-width / 4)
+    margin-right: -($gutter-width / 4)
+
+  .col
+    box-sizing: border-box
+    // overflow: hidden
+
+    .colInner
+      margin: ($gutter-width / 2)
+      @media (max-width $screen-m)
+        margin: ($gutter-width / 4)
+
+    // 450px < screen width < 900px
+    for $i in (0..12)
+      $perc = (100 / (12 / $i))%
+      &.s{$i}
+        flex: 0 0 ($perc)
+      &.offset-s{$i}
+        margin-left: ($perc)
+
+    // screen width < 450px
+    for $i in (0..12)
+      $perc = (100 / (12 / $i))%
+      @media (max-width $screen-xs)
+        &.xs{$i}
+          flex: 0 0 ($perc)
+        &.offset-xs{$i}
+          margin-left: ($perc)
+
+    // screen width > 900px
+    for $i in (0..12)
+      $perc = (100 / (12 / $i))%
+      @media (min-width $screen-m)
+        &.m{$i}
+          flex: 0 0 ($perc)
+        &.offset-m{$i}
+          margin-left: ($perc)
+
+    // screen width > 1200px
+    for $i in (0..12)
+      $perc = (100 / (12 / $i))%
+      @media (min-width $screen-l)
+        &.l{$i}
+          flex: 0 0 ($perc)
+        &.offset-l{$i}
+          margin-left: ($perc)
+
+    // screen width > 1500px
+    for $i in (0..12)
+      $perc = (100 / (12 / $i))%
+      @media (min-width $screen-xl)
+        &.xl{$i}
+          flex: 0 0 ($perc)
+        &.offset-xl{$i}
+          margin-left: ($perc)
